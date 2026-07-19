@@ -51,12 +51,16 @@ const sendErrorProd = (err, res) => {
     });
   } else {
     // Programming / unknown error — log but don't leak details
-    logger.error('UNHANDLED ERROR:', err);
-    res.status(500).json({
-      success: false,
-      message: 'Something went wrong. Please try again later.',
+    module.exports = (err, req, res, next) => {
+    console.error("========== ERROR ==========");
+    console.error(err);
+    console.error(err.stack);
+
+    res.status(err.statusCode || 500).json({
+        success: false,
+        message: "Something went wrong. Please try again later."
     });
-  }
+};
 };
 
 // ── Main error middleware ─────────────────────────────────
