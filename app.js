@@ -123,6 +123,7 @@ app.use(`${API}/contact`,    require('./routes/contactRoutes'));
 app.use(`${API}/newsletter`, require('./routes/newsletterRoutes'));
 app.use(`${API}/vendor`,     require('./routes/vendorRoutes'));
 app.use(`${API}/events`,     require('./routes/eventRoutes'));
+app.use(`${API}/reviews`, require('./routes/reviewRoutes'));
 app.use(`${API}/admin`,      require('./routes/adminRoutes'));
 
 // ── 404 Handler ───────────────────────────────────────────
