@@ -30,13 +30,13 @@ exports.submitReview = async (req, res) => {
             rating,
             review,
             title,
-            approved: false,
+            approved: true,
             verifiedPurchase: false
         });
 
         return res.status(201).json({
             success: true,
-            message: "Thank you! Your review has been submitted for approval.",
+            message:  "Thank you! Your review has been published.",
             review: newReview
         });
 
