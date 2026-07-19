@@ -44,23 +44,20 @@ const sendErrorDev = (err, res) => {
 // ── Production error response (operational errors only) ───
 const sendErrorProd = (err, res) => {
   if (err.isOperational) {
-    // Safe to expose to client
-    res.status(err.statusCode).json({
+    return res.status(err.statusCode).json({
       success: false,
       message: err.message,
     });
-  } else {
-    // Programming / unknown error — log but don't leak details
-    module.exports = (err, req, res, next) => {
-    console.error("========== ERROR ==========");
-    console.error(err);
-    console.error(err.stack);
+  }
 
-    res.status(err.statusCode || 500).json({
-        success: false,
-        message: "Something went wrong. Please try again later."
-    });
-};
+  console.error("========== ERROR ==========");
+  console.error(err);
+  console.error(err.stack);
+
+  return res.status(err.statusCode || 500).json({
+    success: false,
+    message: "Something went wrong. Please try again later."
+  });
 };
 
 // ── Main error middleware ─────────────────────────────────
