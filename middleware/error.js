@@ -69,7 +69,7 @@ const errorMiddleware = (err, req, res, next) => {
   const logLevel = err.statusCode >= 500 ? 'error' : 'warn';
   logger[logLevel](`${req.method} ${req.originalUrl} — ${err.statusCode}: ${err.message}`);
 
-  let error = { ...err, message: err.message };
+  let error = err;
 
   // Transform known error types into AppErrors
   if (err.name === 'CastError')              error = handleCastError(err);
