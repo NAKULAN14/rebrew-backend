@@ -107,10 +107,12 @@ productSchema.index({ createdAt: -1 });
 
 // ── Virtuals ──────────────────────────────────────────────
 productSchema.virtual('primaryImage').get(function () {
-  const primary = this.images.find(img => img.isPrimary);
-  return primary?.url || this.images[0]?.url || null;
-});
+    const images = this.images || [];
 
+    const primary = images.find(img => img.isPrimary);
+
+    return primary?.url || images[0]?.url || null;
+});
 productSchema.virtual('isInStock').get(function () {
   return this.stock > 0;
 });
