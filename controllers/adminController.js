@@ -21,7 +21,9 @@ exports.getDashboardStats = async (req, res, next) => {
     const monthStart = new Date(now.getFullYear(), now.getMonth(), 1);
     const lastMonthStart = new Date(now.getFullYear(), now.getMonth() - 1, 1);
     const lastMonthEnd   = new Date(now.getFullYear(), now.getMonth(), 0);
-
+    console.log("User model:", !!User);
+    console.log("Order model:", !!Order);
+    console.log("Product model:", !!Product);
     const [
       totalUsers,
       newUsersToday,
